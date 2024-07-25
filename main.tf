@@ -122,12 +122,12 @@ resource "azurerm_linux_virtual_machine" "mtc-vm" {
   }
 
   provisioner "local-exec" {
-    command = templatefile("linux-ssh-script.tpl", {
+    command = templatefile("windows-ssh-script.tpl", {
       hostname     = self.public_ip_address,
       user         = "adminuser",
       identityfile = "~/.ssh/mtcazurekey"
     })
-    interpreter = ["bash", "-c"]
+    interpreter = ["Powershell", "-Command"]
   }
 
   tags = {
